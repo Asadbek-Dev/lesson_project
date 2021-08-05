@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/styles";
-import { AppBar, IconButton, Toolbar } from "@material-ui/core";
+import { AppBar, Collapse, IconButton, Toolbar } from "@material-ui/core";
 import SortIcon from '@material-ui/icons/Sort';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 const useStyles = makeStyles((theme)=>({
     root:{
@@ -34,12 +36,20 @@ const useStyles = makeStyles((theme)=>({
     title:{
         color:'#fff',
         fontSize:'4.5rem'
+    },
+    goDown:{
+        color:'#5aff3d',
+        fontSize:'4rem'
     }
 }));
 
 
 const Header = () => {
     const classes=useStyles();
+    const [checked, setChecked] = useState(false);
+    useEffect(() => {
+        setChecked(true);
+    }, [])
     return (
         <div className={classes.root}>
             <AppBar className={classes.appbar} elevation={0}>
@@ -50,12 +60,17 @@ const Header = () => {
                 </IconButton>
                 </Toolbar>
             </AppBar>
+            <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})} collapsedHeight={50} >
             <div className={classes.container}>
                 <h1 className={classes.title}>
                     Welcome to <br/> 
                     My<span className={classes.colorText}>Island.</span>
                 </h1>
+                <IconButton>
+                    <KeyboardArrowDownIcon className={classes.goDown}/>
+                </IconButton>
             </div>
+            </Collapse>
         </div>
     )
 }
