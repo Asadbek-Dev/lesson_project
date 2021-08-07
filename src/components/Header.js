@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { AppBar, Collapse, IconButton, Toolbar } from "@material-ui/core";
 import SortIcon from '@material-ui/icons/Sort';
+import { Link as Scroll} from 'react-scroll';
+
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 const useStyles = makeStyles((theme)=>({
@@ -51,7 +53,7 @@ const Header = () => {
         setChecked(true);
     }, [])
     return (
-        <div className={classes.root}>
+        <div className={classes.root} id='header'>
             <AppBar className={classes.appbar} elevation={0}>
                 <Toolbar className={classes.appbarWrapper}>
                 <h1 className={classes.appbarTitle}>My<span className={classes.colorText}>Island.</span></h1>
@@ -66,9 +68,11 @@ const Header = () => {
                     Welcome to <br/> 
                     My<span className={classes.colorText}>Island.</span>
                 </h1>
-                <IconButton>
-                    <KeyboardArrowDownIcon className={classes.goDown}/>
-                </IconButton>
+                <Scroll to='place-to-visit' smooth={true}>
+                    <IconButton>
+                        <KeyboardArrowDownIcon className={classes.goDown}/>
+                    </IconButton>
+                </Scroll>
             </div>
             </Collapse>
         </div>
